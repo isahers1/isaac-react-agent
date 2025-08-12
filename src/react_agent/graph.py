@@ -15,9 +15,15 @@ from react_agent.context import Context
 from react_agent.state import InputState, State
 from react_agent.tools import TOOLS
 from react_agent.utils import load_chat_model
+import structlog
 
 # Define the function that calls the model
-
+structlog.configure(
+    processors=[
+        structlog.processors.JSONRenderer(),
+    ]
+)
+log = structlog.get_logger()
 
 async def call_model(
     state: State, runtime: Runtime[Context]
@@ -33,6 +39,7 @@ async def call_model(
     Returns:
         dict: A dictionary containing the model's response message.
     """
+    log.info("Calling model", state=state, runtime=runtime)
     # Initialize the model with tool binding. Change the model or add more tools here.
     model = load_chat_model(runtime.context.model).bind_tools(TOOLS)
 
