@@ -21,7 +21,7 @@ def multiply(a: float, b: float) -> float:
 
 
 # Initialize the model
-model = ChatAnthropic(model="claude-3-sonnet-20240229", temperature=0)
+model = ChatAnthropic(model="claude-3-5-sonnet-20240620", temperature=0)
 model_with_tools = model.bind_tools([multiply])
 
 
