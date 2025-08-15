@@ -67,7 +67,7 @@ def should_continue(state: State) -> Literal["tool", "end"]:
     
     if isinstance(last_message, AIMessage) and hasattr(last_message, 'tool_calls') and last_message.tool_calls:
         return "tool"
-    return "end"
+    return END
 
 
 # Build the graph
