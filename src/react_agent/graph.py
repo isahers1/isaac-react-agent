@@ -60,7 +60,7 @@ def tool_node(state: State) -> dict:
     return {"messages": []}
 
 
-def should_continue(state: State) -> Literal["tool", "end"]:
+def should_continue(state: State):
     """Conditional edge from call_model."""
     messages = state["messages"]
     last_message = messages[-1]
