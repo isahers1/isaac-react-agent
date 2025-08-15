@@ -40,7 +40,7 @@ class Interrupt(TypedDict):
 
 def tool_node(state: State) -> dict:
     """Tool node that throws interrupt on first line."""
-    interrupt(Interrupt(type=InterruptType.SOMETHING))
+    answer = interrupt(Interrupt(type=InterruptType.SOMETHING))
     
     # This code never executes due to the interrupt above
     messages = state["messages"]
@@ -79,7 +79,7 @@ workflow.add_node("tool", tool_node)
 
 # Add edges
 workflow.add_edge(START, "call_model")
-workflow.add_conditional_edges("call_model", should_continue, {"tool": "tool", "end": END})
+workflow.add_conditional_edges("call_model", should_continue)
 workflow.add_edge("tool", "call_model")
 
 graph = workflow.compile()
