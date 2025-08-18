@@ -40,7 +40,7 @@ class Interrupt(TypedDict):
 
 def tool_node(state: State) -> dict:
     """Tool node that throws interrupt on first line."""
-    answer = interrupt(Interrupt(type=InterruptType.SOMETHING))
+    # answer = interrupt(Interrupt(type=InterruptType.SOMETHING))
     
     # This code never executes due to the interrupt above
     messages = state["messages"]
