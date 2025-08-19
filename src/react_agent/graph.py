@@ -27,7 +27,7 @@ def idle(reasoning: str) -> str:
 
 # Initialize the model
 model = ChatAnthropic(model="claude-sonnet-4-20250514", temperature=0)
-model_with_tools = model.bind_tools([multiply, idle], tool_choice="required")
+model_with_tools = model.bind_tools([multiply, idle], tool_choice="any")
 
 
 def call_model(state: State) -> dict:
