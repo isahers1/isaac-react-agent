@@ -6,6 +6,7 @@ from langgraph.graph import StateGraph, START, END
 from langgraph.graph.message import add_messages
 from langgraph.types import interrupt
 from enum import Enum
+from langgraph.prebuilt import create_react_agent
 
 
 # Define the state
@@ -83,16 +84,22 @@ def should_continue(state: State):
     return END
 
 
-# Build the graph
-workflow = StateGraph(State)
+# # Build the graph
+# workflow = StateGraph(State)
 
-# Add the 2 nodes
-workflow.add_node("call_model", call_model)
-workflow.add_node("tool", tool_node)
+# # Add the 2 nodes
+# workflow.add_node("call_model", call_model)
+# workflow.add_node("tool", tool_node)
 
-# Add edges
-workflow.add_edge(START, "call_model")
-workflow.add_conditional_edges("call_model", should_continue)
-workflow.add_edge("tool", "call_model")
+# # Add edges
+# workflow.add_edge(START, "call_model")
+# workflow.add_conditional_edges("call_model", should_continue)
+# workflow.add_edge("tool", "call_model")
 
-graph = workflow.compile()
+# graph = workflow.compile()
+
+graph = create_react_agent(
+    model=model,
+    tools=[multiply, idle],
+    prompt="You are a helpful AI assistant.",
+)
