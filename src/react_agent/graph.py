@@ -86,21 +86,21 @@ def should_continue(state: State):
 
 
 # # Build the graph
-# workflow = StateGraph(State)
+workflow = StateGraph(State)
 
-# # Add the 2 nodes
-# workflow.add_node("call_model", call_model)
-# workflow.add_node("tool", tool_node)
+# Add the 2 nodes
+workflow.add_node("call_model", call_model)
+workflow.add_node("tool", tool_node)
 
-# # Add edges
-# workflow.add_edge(START, "call_model")
-# workflow.add_conditional_edges("call_model", should_continue)
-# workflow.add_edge("tool", "call_model")
+# Add edges
+workflow.add_edge(START, "call_model")
+workflow.add_conditional_edges("call_model", should_continue)
+workflow.add_edge("tool", "call_model")
 
-# graph = workflow.compile()
+graph = workflow.compile()
 
-graph = create_react_agent(
-    model=model,
-    tools=[multiply, idle],
-    prompt="You are a helpful AI assistant.",
-)
+# graph = create_react_agent(
+#     model=model,
+#     tools=[multiply, idle],
+#     prompt="You are a helpful AI assistant.",
+# )
