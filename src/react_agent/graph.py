@@ -7,6 +7,7 @@ from langgraph.graph.message import add_messages
 from langgraph.types import interrupt
 from enum import Enum
 from langgraph.prebuilt import create_react_agent
+import time
 
 
 # Define the state
@@ -54,8 +55,8 @@ class Interrupt(TypedDict):
 
 def tool_node(state: State) -> dict:
     """Tool node that throws interrupt on first line."""
-    answer = interrupt(Interrupt(type=InterruptType.SOMETHING))
-    
+    # answer = interrupt(Interrupt(type=InterruptType.SOMETHING))
+    time.sleep(60)
     # This code never executes due to the interrupt above
     messages = state["messages"]
     last_message = messages[-1]
